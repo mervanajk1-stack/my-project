@@ -1,0 +1,662 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#070b10">
+<title>ᴿᴱˣ TEAM | Workspace</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#070b10;--black-2:#0d131a;--black-3:#111a22;--black-4:#18232d;--black-5:#202d38;
+  --white:#f4f7f2;--dim:#9aabaa;--faint:#6d7d7c;
+  --line:rgba(199,222,213,.08);--line-2:rgba(199,222,213,.16);--line-3:rgba(199,222,213,.26);
+  --accent:#4da6ff;--cyan:#63ded1;--violet:#b29bff;
+  --orange:#ffad70;--danger:#ff7777;--success:#9de78b;
+}
+html,body{background:var(--black);color:var(--white);font-family:'Outfit',sans-serif;min-height:100vh;-webkit-font-smoothing:antialiased}
+body{background:radial-gradient(ellipse at 7% 0%, rgba(58,101,90,.16), transparent 35%),radial-gradient(ellipse at 100% 42%, rgba(80,70,126,.10), transparent 31%),linear-gradient(160deg,#0a1015 0%,#070b10 62%,#090d12 100%);background-attachment:fixed;padding-bottom:110px}
+a{color:inherit;text-decoration:none}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer;background:none;border:0}
+.wrap{max-width:520px;margin:0 auto;padding:0 16px}
+
+.hdr{display:flex;align-items:center;justify-content:space-between;padding:16px 0 18px;gap:12px}
+.hdr-left{display:flex;align-items:center;gap:12px;min-width:0;flex:1}
+.logo{width:44px;height:44px;flex:0 0 44px;border-radius:13px;background:linear-gradient(145deg,#7ab8ff,#4da6ff);color:#0b1015;display:grid;place-items:center;font-size:19px;box-shadow:0 8px 24px rgba(77,166,255,.22)}
+.brand h1{font-size:19px;font-weight:900;letter-spacing:-.4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brand-row{display:flex;align-items:center;gap:7px;margin-top:3px}
+.live-tag{display:inline-flex;align-items:center;gap:5px;padding:3px 9px;border-radius:99px;background:rgba(77,166,255,.10);border:1px solid rgba(77,166,255,.24);color:var(--accent);font-size:9.5px;font-weight:900;letter-spacing:1px}
+.live-tag::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent);animation:pulse 1.4s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.brand-row .user{font-size:11.5px;color:var(--dim);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.icon-btn{width:44px;height:44px;flex:0 0 44px;border-radius:13px;background:var(--black-3);border:1px solid var(--line-2);display:grid;place-items:center;color:var(--white);font-size:15px;transition:all .2s}
+.icon-btn:hover{background:var(--black-4);border-color:var(--accent);color:var(--accent)}
+.icon-btn.spin i{animation:spin .8s linear}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.eyebrow{color:var(--accent);font-size:10.5px;font-weight:800;letter-spacing:1.6px;font-family:'JetBrains Mono',monospace;text-transform:uppercase}
+.page-title{font-size:34px;font-weight:900;letter-spacing:-1.2px;margin-top:6px;display:flex;align-items:center;gap:10px}
+.page-title .count{display:inline-block;padding:2px 12px;border-radius:8px;background:rgba(77,166,255,.10);color:var(--accent);border:1px solid rgba(77,166,255,.24);font-size:26px}
+.page-sub{color:var(--dim);font-size:13px;margin-top:6px;line-height:1.5}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:14px 20px;border-radius:13px;font-weight:800;font-size:14px;border:1px solid transparent;transition:all .2s;letter-spacing:.2px;white-space:nowrap;min-height:52px}
+.btn-primary{background:var(--accent);color:#0b1015;box-shadow:0 10px 26px rgba(77,166,255,.18)}
+.btn-primary:hover{background:#7ab8ff;transform:translateY(-1px)}
+.btn-danger{background:rgba(255,119,119,.08);color:#ff9b9b;border-color:rgba(255,119,119,.32)}
+.btn-danger:hover{background:rgba(255,119,119,.15);border-color:var(--danger)}
+.btn-ghost{background:var(--black-3);border-color:var(--line-2);color:var(--white)}
+.btn-ghost:hover{background:var(--black-4);border-color:var(--line-3)}
+.btn-block{width:100%}
+
+.top-actions{display:grid;grid-template-columns:1fr 1.4fr;gap:10px;margin:18px 0 20px}
+
+.panel{background:linear-gradient(155deg,rgba(20,30,38,.96),rgba(12,19,25,.96));border:1px solid var(--line);border-radius:22px;padding:16px;box-shadow:0 12px 34px rgba(0,0,0,.18)}
+
+.search{display:flex;align-items:center;gap:11px;padding:14px 16px;border-radius:15px;background:#080e13;border:1px solid var(--line-2);transition:border-color .2s}
+.search:focus-within{border-color:var(--accent)}
+.search i{color:var(--cyan);font-size:15px}
+.search input{flex:1;border:0;outline:0;background:transparent;color:var(--white);font-size:15px;font-weight:500}
+.search input::placeholder{color:#6a7a78;font-weight:500}
+
+.filters{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-top:12px;padding:5px;border-radius:14px;background:#080e13;border:1px solid var(--line)}
+.f-tab{padding:12px 8px;border-radius:10px;font-weight:800;font-size:13.5px;color:var(--dim);transition:all .18s;border:1px solid transparent}
+.f-tab:hover{color:var(--white)}
+.f-tab.active{background:var(--black-4);color:var(--accent);border-color:rgba(77,166,255,.28)}
+
+.accounts{display:flex;flex-direction:column;gap:12px;margin-top:16px}
+.acc{background:linear-gradient(155deg,rgba(20,30,38,.96),rgba(11,17,23,.96));border:1px solid var(--line);border-radius:20px;padding:16px;transition:border-color .25s,transform .25s}
+.acc:hover{border-color:var(--line-3);transform:translateY(-2px)}
+.acc[hidden]{display:none}
+.acc.acc-in-match{border-color:rgba(178,155,255,.42);box-shadow:0 0 0 1px rgba(178,155,255,.16) inset, 0 8px 26px rgba(178,155,255,.10)}
+
+.acc-head{display:flex;align-items:flex-start;gap:12px}
+.acc-avatar{width:52px;height:52px;flex:0 0 52px;border-radius:15px;background:linear-gradient(145deg,#7ab8ff,#4da6ff);color:#0b1015;display:grid;place-items:center;font-size:22px;font-weight:900;box-shadow:0 6px 20px rgba(77,166,255,.20)}
+.acc-body{flex:1;min-width:0}
+.acc-name-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.acc-name{font-size:15px;font-weight:900;letter-spacing:-.2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.region-pill{display:inline-block;padding:2px 9px;border-radius:7px;background:rgba(99,222,209,.10);border:1px solid rgba(99,222,209,.24);color:var(--cyan);font-size:10px;font-weight:800;letter-spacing:.5px;font-family:'JetBrains Mono',monospace}
+.acc-uid{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--faint);margin-top:5px;font-weight:500}
+
+.status{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:99px;font-size:10.5px;font-weight:900;letter-spacing:.8px;text-transform:uppercase;white-space:nowrap;font-family:'JetBrains Mono',monospace;transition:all .25s}
+.status .dot{width:6px;height:6px;border-radius:50%;background:currentColor}
+.status.online{background:rgba(99,222,209,.10);border:1px solid rgba(99,222,209,.28);color:var(--cyan)}
+.status.starting,.status.reconnecting{background:rgba(255,173,112,.10);border:1px solid rgba(255,173,112,.28);color:var(--orange)}
+.status.error{background:rgba(255,119,119,.10);border:1px solid rgba(255,119,119,.28);color:var(--danger)}
+.status.idle,.status.stopped{background:rgba(199,222,213,.06);border:1px solid var(--line-2);color:var(--dim)}
+.status.match{background:rgba(178,155,255,.16);border:1px solid rgba(178,155,255,.45);color:var(--violet);animation:matchPulse 1.5s infinite alternate}
+.status.match .dot{animation:pulse .9s infinite}
+@keyframes matchPulse{0%{border-color:rgba(178,155,255,.30);box-shadow:0 0 0 0 rgba(178,155,255,0)}100%{border-color:rgba(178,155,255,.70);box-shadow:0 0 12px 0 rgba(178,155,255,.18)}}
+
+.acc-tags{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:12px;flex-wrap:wrap}
+.tag{display:inline-flex;align-items:center;gap:5px;padding:4px 9px;border-radius:8px;font-size:9px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;font-family:'JetBrains Mono',monospace;transition:all .25s}
+.tag.risk{background:rgba(255,173,112,.10);border:1px solid rgba(255,173,112,.30);color:var(--orange)}
+.tag.safe{background:rgba(157,231,139,.10);border:1px solid rgba(157,231,139,.30);color:var(--success)}
+.tag.active{background:rgba(99,222,209,.10);border:1px solid rgba(99,222,209,.28);color:var(--cyan)}
+.tag.active i{font-size:7px}
+.tag.active.match-active{background:rgba(178,155,255,.14);border-color:rgba(178,155,255,.36);color:var(--violet)}
+.tag.active.match-active i{animation:pulse .9s infinite}
+
+.acc-stats{display:grid;grid-template-columns:1fr 1fr 1fr;margin-top:14px;padding:14px 4px;background:rgba(6,11,15,.60);border:1px solid var(--line);border-radius:15px}
+.stat{text-align:center;padding:0 4px;border-right:1px solid var(--line)}
+.stat:last-child{border-right:0}
+.stat-l{font-size:9.5px;font-weight:900;letter-spacing:1.4px;color:var(--faint);text-transform:uppercase}
+.stat-v{font-size:19px;font-weight:900;letter-spacing:-.5px;margin-top:5px;font-family:'JetBrains Mono',monospace;color:var(--white)}
+.stat-v.accent{color:var(--accent)}
+.stat-v .inf{font-size:13px;font-weight:700;color:var(--faint);margin-left:2px}
+
+.acc-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:12px}
+.acc-xp{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--dim);font-weight:600}
+.acc-xp b{color:var(--white);font-weight:800}
+.open-btn{display:inline-flex;align-items:center;gap:6px;color:var(--accent);font-size:12.5px;font-weight:900;padding:8px 12px;border-radius:10px;transition:background .15s}
+.open-btn:hover{background:rgba(77,166,255,.08)}
+
+.quota-card{display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center;padding:22px 20px;margin-bottom:14px;background:linear-gradient(155deg,rgba(20,30,38,.96),rgba(11,17,23,.96));border:1px solid var(--line);border-radius:22px}
+.ring{position:relative;width:132px;height:132px;flex:0 0 132px}
+.ring svg{transform:rotate(-90deg);width:100%;height:100%}
+.ring-bg{stroke:#1d2a33;stroke-width:11;fill:none}
+.ring-fg{stroke:var(--accent);stroke-width:11;fill:none;stroke-linecap:round;filter:drop-shadow(0 0 8px rgba(77,166,255,.45));transition:stroke-dashoffset .8s ease}
+.ring-c{position:absolute;inset:0;display:grid;place-items:center;text-align:center}
+.ring-c b{font-size:34px;font-weight:900;letter-spacing:-1.5px;font-family:'JetBrains Mono',monospace;color:var(--white);display:block;line-height:1}
+.ring-c small{display:block;margin-top:6px;color:var(--dim);font-size:11px;font-weight:800;letter-spacing:1.4px}
+.quota-info{display:flex;flex-direction:column;gap:10px}
+.qi-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line)}
+.qi-row:last-child{border-bottom:0;padding-bottom:0}
+.qi-l{color:var(--dim);font-size:12px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase}
+.qi-v{font-size:22px;font-weight:900;letter-spacing:-.6px;font-family:'JetBrains Mono',monospace;color:var(--white)}
+.days-pill{display:inline-flex;align-items:center;gap:7px;padding:7px 14px;border-radius:99px;margin-top:8px;background:rgba(77,166,255,.08);border:1px solid rgba(77,166,255,.22);color:var(--dim);font-size:12px;font-weight:800}
+.days-pill i{color:var(--accent);font-size:13px}
+.days-pill b{color:var(--accent);font-family:'JetBrains Mono',monospace;font-size:14px}
+
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+.t-card{background:linear-gradient(155deg,rgba(20,30,38,.96),rgba(11,17,23,.96));border:1px solid var(--line);border-radius:18px;padding:18px 8px;text-align:center;transition:border-color .2s}
+.t-card:hover{border-color:var(--line-3)}
+.t-ico{width:34px;height:34px;margin:0 auto 10px;border-radius:10px;display:grid;place-items:center;font-size:15px;background:rgba(77,166,255,.08);color:var(--accent);border:1px solid rgba(77,166,255,.16)}
+.t-card:nth-child(2) .t-ico{background:rgba(99,222,209,.08);color:var(--cyan);border-color:rgba(99,222,209,.16)}
+.t-card:nth-child(3) .t-ico{background:rgba(178,155,255,.08);color:var(--violet);border-color:rgba(178,155,255,.16)}
+.t-v{font-size:22px;font-weight:900;letter-spacing:-.8px;font-family:'JetBrains Mono',monospace}
+.t-l{margin-top:5px;color:var(--dim);font-size:10px;font-weight:900;letter-spacing:1.4px;text-transform:uppercase}
+
+.uptime{display:flex;align-items:center;justify-content:space-between;padding:16px 18px;margin-bottom:14px;background:linear-gradient(155deg,rgba(20,30,38,.96),rgba(11,17,23,.96));border:1px solid var(--line);border-radius:18px}
+.uptime-l{display:flex;align-items:center;gap:10px;color:var(--dim);font-size:12px;font-weight:900;letter-spacing:1.2px;text-transform:uppercase}
+.uptime-l i{width:26px;height:26px;display:grid;place-items:center;border-radius:8px;background:rgba(99,222,209,.10);color:var(--cyan);font-size:12px}
+.uptime-v{font-size:20px;font-weight:900;letter-spacing:-.4px;font-family:'JetBrains Mono',monospace;color:var(--white)}
+
+.ac{padding:20px;background:linear-gradient(155deg,rgba(20,30,38,.96),rgba(11,17,23,.96));border:1px solid var(--line);border-radius:20px}
+.ac-title{display:flex;align-items:center;gap:9px;font-size:15px;font-weight:900;margin-bottom:16px}
+.ac-title i{color:var(--accent);font-size:14px}
+.ac-inner{display:flex;align-items:flex-start;gap:14px}
+.ac-ico{width:56px;height:56px;flex:0 0 56px;border-radius:16px;background:rgba(77,166,255,.08);color:var(--accent);border:1px solid rgba(77,166,255,.20);display:grid;place-items:center;font-size:22px}
+.ac-body{flex:1;min-width:0}
+.ac-body h4{font-size:17px;font-weight:900;letter-spacing:-.3px;margin-bottom:6px}
+.ac-body p{color:var(--dim);font-size:12.5px;line-height:1.55}
+.ac .btn{width:100%;margin-top:16px}
+
+.bnav{position:fixed;bottom:0;left:0;right:0;z-index:50;display:grid;grid-template-columns:repeat(4,1fr);background:rgba(10,16,22,.94);border-top:1px solid var(--line-2);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);padding:9px 10px max(9px, env(safe-area-inset-bottom));box-shadow:0 -10px 34px rgba(0,0,0,.28)}
+.bn{display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 4px;border-radius:13px;color:var(--dim);transition:all .18s;font-weight:800}
+.bn i{font-size:18px;line-height:1}
+.bn span{font-size:9.5px;letter-spacing:.5px;text-transform:uppercase}
+.bn:hover{color:var(--white)}
+.bn.active{color:var(--accent);background:rgba(77,166,255,.09);border:1px solid rgba(77,166,255,.18)}
+.bn.plus{color:var(--accent)}
+.bn.plus i{font-size:22px}
+
+.view{display:none;animation:rise .3s ease both}
+.view.active{display:block}
+@keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+.empty{padding:50px 20px;text-align:center;color:var(--dim);border:1px dashed var(--line-2);border-radius:20px;margin-top:16px}
+.empty i{font-size:42px;color:var(--faint);margin-bottom:14px;display:block}
+.empty h3{color:var(--white);font-size:17px;font-weight:900;margin-bottom:6px}
+.empty p{font-size:13px;max-width:320px;margin:0 auto 18px;line-height:1.7}
+
+.toast{position:fixed;bottom:calc(90px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%) translateY(120%);padding:13px 20px;border-radius:13px;background:var(--accent);color:#0b1015;font-weight:900;font-size:13.5px;z-index:99;box-shadow:0 14px 40px rgba(0,0,0,.4);transition:transform .3s ease;white-space:nowrap;max-width:92vw;overflow:hidden;text-overflow:ellipsis}
+.toast.show{transform:translateX(-50%) translateY(0)}
+.toast.err{background:#ff8585;color:#240a0a}
+
+@media(max-width:420px){
+  .page-title{font-size:30px}
+  .page-title .count{font-size:23px;padding:2px 10px}
+  .quota-card{gap:16px;padding:18px 16px}
+  .ring{width:112px;height:112px;flex-basis:112px}
+  .ring-c b{font-size:28px}
+  .stat-v{font-size:17px}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="hdr">
+    <div class="hdr-left">
+      <div class="logo"><i class="fa-solid fa-bolt"></i></div>
+      <div class="brand">
+        <h1>ᴿᴱˣ TEAM</h1>
+        <div class="brand-row">
+          <span class="live-tag">LIVE</span>
+          <span class="user">{{ user.username }}</span>
+        </div>
+      </div>
+    </div>
+    <button class="icon-btn" id="refresh-btn" title="Refresh">
+      <i class="fa-solid fa-rotate"></i>
+    </button>
+  </header>
+
+  <section class="view active" id="view-overview">
+    <span class="eyebrow">Your workspace</span>
+    <h2 class="page-title">Overview</h2>
+    <p class="page-sub">Live metrics for all your accounts.</p>
+
+    <div class="quota-card" style="margin-top:18px">
+      <div class="ring">
+        <svg viewBox="0 0 120 120">
+          <circle class="ring-bg" cx="60" cy="60" r="52"></circle>
+          <circle class="ring-fg" cx="60" cy="60" r="52" id="ring-fg" stroke-dasharray="326.7" stroke-dashoffset="326.7"></circle>
+        </svg>
+        <div class="ring-c">
+          <b id="ring-num">{{ (quota_max - quota_used) if quota_max < 999999 else '∞' }}</b>
+          <small>FREE</small>
+        </div>
+      </div>
+      <div class="quota-info">
+        <div class="qi-row"><span class="qi-l">Used</span><span class="qi-v" id="qi-used">{{ quota_used }}</span></div>
+        <div class="qi-row"><span class="qi-l">Max</span><span class="qi-v" id="qi-max">{{ quota_max if quota_max < 999999 else '∞' }}</span></div>
+        <div><span class="days-pill"><i class="fa-regular fa-clock"></i><b>30</b> days left</span></div>
+      </div>
+    </div>
+
+    <div class="trio">
+      <div class="t-card">
+        <div class="t-ico"><i class="fa-solid fa-users"></i></div>
+        <div class="t-v" id="t-accounts">{{ accounts|length }}</div>
+        <div class="t-l">Accounts</div>
+      </div>
+      <div class="t-card">
+        <div class="t-ico"><i class="fa-solid fa-angles-up"></i></div>
+        <div class="t-v" id="t-exp">0</div>
+        <div class="t-l">Total EXP</div>
+      </div>
+      <div class="t-card">
+        <div class="t-ico"><i class="fa-solid fa-gamepad"></i></div>
+        <div class="t-v" id="t-matches">0</div>
+        <div class="t-l">Total Games</div>
+      </div>
+    </div>
+
+    <div class="uptime">
+      <div class="uptime-l"><i class="fa-solid fa-shield-halved"></i> Uptime</div>
+      <div class="uptime-v" id="uptime-val">00:00:00</div>
+    </div>
+
+    <div class="ac">
+      <div class="ac-title"><i class="fa-solid fa-chart-simple"></i> Account center</div>
+      <div class="ac-inner">
+        <div class="ac-ico"><i class="fa-solid fa-users"></i></div>
+        <div class="ac-body">
+          <h4 id="ac-count">{{ accounts|length }} accounts</h4>
+          <p>Open your separate account workspace to manage every player.</p>
+        </div>
+      </div>
+      <button class="btn btn-primary" onclick="switchView('accounts')">
+        Manage accounts <i class="fa-solid fa-arrow-right"></i>
+      </button>
+    </div>
+  </section>
+
+  <section class="view" id="view-accounts">
+    <span class="eyebrow">Your workspace</span>
+    <h2 class="page-title">
+      Accounts <span class="count" id="acc-count-badge">{{ accounts|length }}</span>
+    </h2>
+    <p class="page-sub">Search players, check live activity, and open controls.</p>
+
+    <div class="top-actions" id="top-actions"></div>
+
+    <div class="panel" style="padding:12px">
+      <div class="search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="search-input" placeholder="Search name or ID" autocomplete="off">
+      </div>
+      <div class="filters">
+        <button class="f-tab active" data-filter="all">All</button>
+        <button class="f-tab" data-filter="running">Running</button>
+        <button class="f-tab" data-filter="stopped">Stopped</button>
+      </div>
+    </div>
+
+    <div class="accounts" id="accounts-list">
+      {% if accounts %}
+        {% for a in accounts %}
+        <div class="acc"
+             data-aid="{{ a.id }}"
+             data-status="{{ a.status or 'stopped' }}"
+             data-name="{{ (a.nickname or a.game_id or a.uid)|lower }}"
+             data-uid="{{ a.game_id or a.uid }}"
+             data-mode="{{ a.mode or 'admin' }}"
+             data-active="0">
+
+          <div class="acc-head">
+            <div class="acc-avatar">{{ (a.nickname or a.game_id or a.uid)[0]|upper }}</div>
+            <div class="acc-body">
+              <div class="acc-name-row">
+                <span class="acc-name">{{ a.nickname or 'ID ' + (a.game_id or a.uid) }}</span>
+                <span class="region-pill">ME</span>
+              </div>
+              <div class="acc-uid">ID: {{ a.game_id or '—' }}</div>
+            </div>
+            <span class="status {{ a.status or 'stopped' }} acc-status">
+              <span class="dot"></span>
+              <span class="acc-status-text">
+                {% if a.status == 'online' %}SEARCHING{% else %}{{ (a.status or 'stopped')|upper }}{% endif %}
+              </span>
+            </span>
+          </div>
+
+          <div class="acc-tags">
+            {% if a.mode == 'risk' %}
+              <span class="tag risk">RISK</span>
+            {% else %}
+              <span class="tag safe">ADMIN</span>
+            {% endif %}
+            <span class="tag active">
+              <i class="fa-solid fa-circle-nodes"></i>
+              <span class="acc-active">0 active</span>
+            </span>
+          </div>
+
+          <div class="acc-stats">
+            <div class="stat">
+              <div class="stat-l">Level</div>
+              <div class="stat-v accent acc-level">{{ a.level or 1 }}</div>
+            </div>
+            <div class="stat">
+              <div class="stat-l">Gained</div>
+              <div class="stat-v acc-gained">+{{ a.exp_gained or 0 }}</div>
+            </div>
+            <div class="stat">
+              <div class="stat-l">Games</div>
+              <div class="stat-v">
+                <span class="acc-matches">{{ a.matches_played or 0 }}</span>
+                <span class="inf">/ {% if a.mode == 'risk' %}∞{% else %}{{ a.max_matches or 500 }}{% endif %}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="acc-foot">
+            <span class="acc-xp"><b class="acc-exp">{{ a.exp or 0 }}</b> EXP</span>
+            <a class="open-btn" href="/account/{{ a.id }}">
+              Open details <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+        {% endfor %}
+      {% else %}
+        <div class="empty">
+          <i class="fa-solid fa-inbox"></i>
+          <h3>No accounts yet</h3>
+          <p>Add your first Free Fire account to start leveling it up automatically.</p>
+          <a class="btn btn-primary" href="/add_account">
+            <i class="fa-solid fa-plus"></i> Add account
+          </a>
+        </div>
+      {% endif %}
+    </div>
+  </section>
+
+</div>
+
+<nav class="bnav">
+  <button class="bn active" data-view="overview">
+    <i class="fa-solid fa-chart-pie"></i>
+    <span>Overview</span>
+  </button>
+  <button class="bn" data-view="accounts">
+    <i class="fa-solid fa-users"></i>
+    <span>Accounts</span>
+  </button>
+  <a class="bn" href="/logout">
+    <i class="fa-solid fa-right-from-bracket"></i>
+    <span>Log out</span>
+  </a>
+  <a class="bn plus" href="/add_account">
+    <i class="fa-solid fa-plus"></i>
+    <span>Add</span>
+  </a>
+</nav>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const $ = (s, c=document) => c.querySelector(s);
+const $$ = (s, c=document) => [...c.querySelectorAll(s)];
+
+const STATUS_TEXT = {
+  'online': 'SEARCHING',
+  'starting': 'CONNECTING',
+  'reconnecting': 'RECONNECTING',
+  'error': 'ERROR',
+  'stopped': 'STOPPED',
+  'idle': 'IDLE',
+  'match': 'MATCH'
+};
+
+function switchView(name){
+  $$('.view').forEach(v => v.classList.remove('active'));
+  $('#view-' + name)?.classList.add('active');
+  $$('.bn').forEach(b => b.classList.toggle('active', b.dataset.view === name));
+  window.scrollTo({top:0, behavior:'smooth'});
+  try { localStorage.setItem('rex_view', name); } catch(_){}
+  renderTopActions();
+}
+
+$$('.bn').forEach(b => {
+  if (b.dataset.view) b.addEventListener('click', () => switchView(b.dataset.view));
+});
+
+try {
+  const saved = localStorage.getItem('rex_view');
+  if (saved) switchView(saved);
+} catch(_){}
+
+function toast(msg, err=false){
+  const t = $('#toast');
+  t.textContent = msg;
+  t.classList.toggle('err', err);
+  t.classList.add('show');
+  clearTimeout(t._t);
+  t._t = setTimeout(()=>t.classList.remove('show'), 2400);
+}
+
+let _lastRunningState = null;
+
+function renderTopActions(){
+  const container = $('#top-actions');
+  if (!container) return;
+
+  const accounts = $$('.acc');
+  if (accounts.length === 0) {
+    if (_lastRunningState !== 'empty') {
+      _lastRunningState = 'empty';
+      container.innerHTML = `<a class="btn btn-primary" href="/add_account" style="grid-column:1 / -1"><i class="fa-solid fa-plus"></i> Add account</a>`;
+    }
+    return;
+  }
+
+  const anyRunning = accounts.some(c => {
+    const s = c.dataset.status || 'stopped';
+    return ['online','starting','reconnecting','match'].includes(s) || Number(c.dataset.active || 0) > 0;
+  });
+
+  if (_lastRunningState === anyRunning) return;
+  _lastRunningState = anyRunning;
+
+  if (anyRunning) {
+    container.innerHTML = `
+      <button class="btn btn-danger" id="delete-all-btn"><i class="fa-solid fa-trash"></i> Delete all</button>
+      <button class="btn btn-ghost" id="stop-all-btn"><i class="fa-solid fa-stop"></i> Stop all</button>`;
+  } else {
+    container.innerHTML = `
+      <button class="btn btn-danger" id="delete-all-btn"><i class="fa-solid fa-trash"></i> Delete all</button>
+      <button class="btn btn-primary" id="start-all-btn"><i class="fa-solid fa-play"></i> Start all</button>`;
+  }
+
+  $('#start-all-btn')?.addEventListener('click', async () => {
+    const r = await api('/api/accounts/start_all', {method:'POST'});
+    if (r.ok){ toast(`Starting ${r.data.started} accounts...`); setTimeout(()=>location.reload(), 500); }
+    else toast(r.data?.error || 'Failed', true);
+  });
+  $('#stop-all-btn')?.addEventListener('click', async () => {
+    const r = await api('/api/accounts/stop_all', {method:'POST'});
+    if (r.ok){ toast(`Stopped ${r.data.stopped} accounts`); setTimeout(()=>location.reload(), 500); }
+    else toast(r.data?.error || 'Failed', true);
+  });
+  $('#delete-all-btn')?.addEventListener('click', async () => {
+    if (!confirm('Delete ALL your accounts? This cannot be undone.')) return;
+    await api('/api/accounts/stop_all', {method:'POST'});
+    for (const c of $$('.acc')) await api(`/api/accounts/${c.dataset.aid}`, {method:'DELETE'});
+    toast('All accounts deleted');
+    setTimeout(()=>location.reload(), 700);
+  });
+}
+
+let currentFilter = 'all';
+$$('.f-tab').forEach(t => t.addEventListener('click', () => {
+  $$('.f-tab').forEach(x => x.classList.remove('active'));
+  t.classList.add('active');
+  currentFilter = t.dataset.filter;
+  applyFilters();
+}));
+$('#search-input')?.addEventListener('input', applyFilters);
+
+function applyFilters(){
+  const q = ($('#search-input')?.value || '').toLowerCase().trim();
+  $$('.acc').forEach(card => {
+    const status = card.dataset.status || 'stopped';
+    const name = card.dataset.name || '';
+    const uid = (card.dataset.uid || '').toLowerCase();
+    const activeCount = parseInt(card.dataset.active || '0', 10);
+
+    let matchFilter = false;
+    if (currentFilter === 'all') matchFilter = true;
+    else if (currentFilter === 'running') matchFilter = ['online','starting','reconnecting','match'].includes(status) || activeCount > 0;
+    else if (currentFilter === 'stopped') matchFilter = ['stopped','idle','error'].includes(status) && activeCount === 0;
+
+    const matchQuery = !q || name.includes(q) || uid.includes(q);
+    card.hidden = !(matchFilter && matchQuery);
+  });
+  updateCounter();
+}
+
+async function api(url, opts={}){
+  const res = await fetch(url, {credentials:'same-origin',headers:{'Content-Type':'application/json'},...opts});
+  let data = null; try { data = await res.json(); } catch(_){}
+  return {ok:res.ok, status:res.status, data};
+}
+
+function updateCard(aid, patch){
+  const card = document.querySelector(`[data-aid="${aid}"]`);
+  if (!card) return;
+
+  if (patch.status){
+    card.dataset.status = patch.status;
+  }
+
+  const activeCount = Number(patch.active_matches || 0);
+  card.dataset.active = String(activeCount);
+
+  const baseStatus = patch.status || card.dataset.status || 'stopped';
+  const effectiveStatus = activeCount > 0 ? 'match' : baseStatus;
+
+  const statusText = STATUS_TEXT[effectiveStatus] || effectiveStatus.toUpperCase();
+
+  const pill = card.querySelector('.acc-status');
+  if (pill) {
+    pill.className = 'status ' + effectiveStatus + ' acc-status';
+    const txtEl = card.querySelector('.acc-status-text');
+    if (txtEl) txtEl.textContent = statusText;
+  }
+
+  card.classList.toggle('acc-in-match', activeCount > 0);
+
+  const activeTag = card.querySelector('.tag.active');
+  if (activeTag) {
+    activeTag.classList.toggle('match-active', activeCount > 0);
+  }
+
+  if (patch.level != null){
+    const el = card.querySelector('.acc-level'); if (el) el.textContent = patch.level;
+  }
+  if (patch.matches_played != null){
+    const el = card.querySelector('.acc-matches'); if (el) el.textContent = patch.matches_played;
+  }
+  if (patch.exp_gained != null){
+    const el = card.querySelector('.acc-gained'); if (el) el.textContent = '+' + Number(patch.exp_gained).toLocaleString();
+  }
+  if (patch.exp != null){
+    const el = card.querySelector('.acc-exp'); if (el) el.textContent = Number(patch.exp).toLocaleString();
+  }
+  if (patch.nickname){
+    const n = card.querySelector('.acc-name'); if (n) n.textContent = patch.nickname;
+    card.dataset.name = patch.nickname.toLowerCase();
+    const a = card.querySelector('.acc-avatar'); if (a) a.textContent = patch.nickname[0].toUpperCase();
+  }
+  if (patch.game_id){
+    const u = card.querySelector('.acc-uid'); if (u) u.textContent = 'ID: ' + patch.game_id;
+    card.dataset.uid = patch.game_id;
+  }
+
+  const activeEl = card.querySelector('.acc-active');
+  if (activeEl) activeEl.textContent = activeCount + ' active';
+}
+
+const allIds = $$('.acc').map(c => parseInt(c.dataset.aid, 10));
+
+async function poll(){
+  let totalExp = 0, totalMatches = 0;
+  let anyRunning = false;
+
+  for (const aid of allIds){
+    try {
+      const r = await fetch(`/api/accounts/${aid}/status`, {credentials:'same-origin'});
+      if (!r.ok) continue;
+      const j = await r.json();
+      const a = j.account || {};
+      updateCard(aid, a);
+
+      const st = a.status || 'stopped';
+      const act = Number(a.active_matches || 0);
+      if (['online','starting','reconnecting','match'].includes(st) || act > 0) anyRunning = true;
+    } catch(_){}
+  }
+
+  try {
+    const rt = await fetch('/api/my_totals', {credentials:'same-origin'});
+    if (rt.ok) {
+      const jt = await rt.json();
+      totalExp = jt.total_exp_gained || 0;
+      totalMatches = jt.total_matches || 0;
+    }
+  } catch(_){}
+
+  const tExp = $('#t-exp'); if (tExp) tExp.textContent = '+' + Number(totalExp).toLocaleString();
+  const tM = $('#t-matches'); if (tM) tM.textContent = Number(totalMatches).toLocaleString();
+
+  applyFilters();
+
+  if (_lastRunningState !== anyRunning) {
+    _lastRunningState = anyRunning;
+    renderTopActions();
+  }
+
+  const ring = $('#ring-fg');
+  if (ring) {
+    const used = {{ quota_used }};
+    const max = {{ quota_max if quota_max < 999999 else 1000000 }};
+    const pct = max > 0 ? Math.min(1, used / max) : 0;
+    const circ = 2 * Math.PI * 52;
+    ring.setAttribute('stroke-dasharray', circ.toFixed(2));
+    ring.setAttribute('stroke-dashoffset', (circ * (1 - pct)).toFixed(2));
+  }
+}
+
+function updateCounter(){
+  const n = $$('.acc:not([hidden])').length;
+  const badge = $('#acc-count-badge'); if (badge) badge.textContent = n;
+  const ac = $('#ac-count'); if (ac) ac.textContent = n + ' account' + (n === 1 ? '' : 's');
+  const ta = $('#t-accounts'); if (ta) ta.textContent = n;
+}
+
+const startTime = Date.now();
+function tickUptime(){
+  const s = Math.floor((Date.now() - startTime) / 1000);
+  const h = String(Math.floor(s / 3600)).padStart(2, '0');
+  const m = String(Math.floor((s % 3600) / 60)).padStart(2, '0');
+  const sec = String(s % 60).padStart(2, '0');
+  const el = $('#uptime-val'); if (el) el.textContent = `${h}:${m}:${sec}`;
+}
+setInterval(tickUptime, 1000);
+tickUptime();
+
+$('#refresh-btn')?.addEventListener('click', async (e) => {
+  const i = e.currentTarget.querySelector('i');
+  i.classList.add('spin');
+  await poll();
+  setTimeout(()=>i.classList.remove('spin'), 700);
+  toast('Refreshed');
+});
+
+renderTopActions();
+poll();
+setInterval(poll, 3000);
+updateCounter();
+</script>
+
+<script src="/static/music.js"></script>
+</body>
+</html>

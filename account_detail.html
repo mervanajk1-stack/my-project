@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#070b10">
+<title>{{ account.nickname or account.game_id or account.uid }} | ᴿᴱˣ TEAM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#070b10;--black-2:#0d131a;--black-3:#111a22;--black-4:#18232d;--black-5:#202d38;
+  --white:#f4f7f2;--dim:#9aabaa;--faint:#6d7d7c;
+  --line:rgba(199,222,213,.08);--line-2:rgba(199,222,213,.16);--line-3:rgba(199,222,213,.26);
+  --accent:#4da6ff;--cyan:#63ded1;--violet:#b29bff;
+  --orange:#ffad70;--danger:#ff7777;--success:#9de78b;
+}
+html,body{background:var(--black);color:var(--white);font-family:'Outfit',sans-serif;min-height:100vh;-webkit-font-smoothing:antialiased}
+body{background:radial-gradient(ellipse at 7% 0%, rgba(58,101,90,.16), transparent 35%),radial-gradient(ellipse at 100% 42%, rgba(80,70,126,.10), transparent 31%),linear-gradient(160deg,#0a1015 0%,#070b10 62%,#090d12 100%);background-attachment:fixed;padding-bottom:110px}
+a{color:inherit;text-decoration:none}
+button,input{font:inherit;color:inherit}
+button{cursor:pointer;background:none;border:0}
+.wrap{max-width:520px;margin:0 auto;padding:0 16px}
+
+.hdr{display:flex;align-items:center;justify-content:space-between;padding:16px 0 18px;gap:12px}
+.hdr-left{display:flex;align-items:center;gap:12px;min-width:0;flex:1}
+.logo{width:44px;height:44px;flex:0 0 44px;border-radius:13px;background:linear-gradient(145deg,#7ab8ff,#4da6ff);color:#0b1015;display:grid;place-items:center;font-size:19px;box-shadow:0 8px 24px rgba(77,166,255,.22)}
+.brand h1{font-size:19px;font-weight:900;letter-spacing:-.4px}
+.brand-row{display:flex;align-items:center;gap:7px;margin-top:3px}
+.live-tag{display:inline-flex;align-items:center;gap:5px;padding:3px 9px;border-radius:99px;background:rgba(77,166,255,.10);border:1px solid rgba(77,166,255,.24);color:var(--accent);font-size:9.5px;font-weight:900;letter-spacing:1px}
+.live-tag::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent);animation:pulse 1.4s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.brand-row .user{font-size:11.5px;color:var(--dim);font-weight:600}
+.icon-btn{width:44px;height:44px;flex:0 0 44px;border-radius:13px;background:var(--black-3);border:1px solid var(--line-2);display:grid;place-items:center;color:var(--white);font-size:15px;transition:all .2s}
+.icon-btn:hover{background:var(--black-4);border-color:var(--accent);color:var(--accent)}
+
+.hero-card{padding:22px 20px;background:linear-gradient(155deg,rgba(20,30,38,.96),rgba(11,17,23,.96));border:1px solid var(--line);border-radius:24px;box-shadow:0 14px 40px rgba(0,0,0,.22);margin-bottom:14px;position:relative;overflow:hidden}
+.hero-card::before{content:"";position:absolute;top:-50%;right:-30%;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle, rgba(77,166,255,.10), transparent 70%);pointer-events:none}
+.hero-top{display:flex;align-items:center;gap:16px;position:relative;z-index:1}
+.hero-avatar{width:76px;height:76px;flex:0 0 76px;border-radius:22px;background:linear-gradient(145deg,#7ab8ff,#4da6ff);color:#0b1015;display:grid;place-items:center;font-size:34px;font-weight:900;box-shadow:0 10px 30px rgba(77,166,255,.28)}
+.hero-body{flex:1;min-width:0}
+.hero-name{font-size:21px;font-weight:900;letter-spacing:-.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hero-row{display:flex;align-items:center;gap:8px;margin-top:7px;flex-wrap:wrap}
+.region-pill{display:inline-block;padding:3px 10px;border-radius:8px;background:rgba(99,222,209,.10);border:1px solid rgba(99,222,209,.24);color:var(--cyan);font-size:10.5px;font-weight:800;letter-spacing:.6px;font-family:'JetBrains Mono',monospace}
+.hero-id{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--faint);font-weight:600}
+.mode-badge{display:inline-block;padding:3px 10px;border-radius:8px;font-size:10px;font-weight:900;letter-spacing:.7px;font-family:'JetBrains Mono',monospace;text-transform:uppercase}
+.mode-badge.admin{background:rgba(99,222,209,.10);border:1px solid rgba(99,222,209,.28);color:var(--cyan)}
+.mode-badge.risk{background:rgba(255,173,112,.10);border:1px solid rgba(255,173,112,.30);color:var(--orange)}
+
+.status-banner{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:18px;padding:14px 16px;border-radius:15px;position:relative;z-index:1;transition:all .3s}
+.status-banner.online{background:linear-gradient(135deg,rgba(99,222,209,.14),rgba(99,222,209,.06));border:1px solid rgba(99,222,209,.28)}
+.status-banner.starting,.status-banner.reconnecting{background:linear-gradient(135deg,rgba(255,173,112,.14),rgba(255,173,112,.06));border:1px solid rgba(255,173,112,.28)}
+.status-banner.error{background:linear-gradient(135deg,rgba(255,119,119,.14),rgba(255,119,119,.06));border:1px solid rgba(255,119,119,.28)}
+.status-banner.idle,.status-banner.stopped{background:linear-gradient(135deg,rgba(199,222,213,.08),rgba(199,222,213,.03));border:1px solid var(--line-2)}
+.status-banner.match{background:linear-gradient(135deg,rgba(178,155,255,.18),rgba(178,155,255,.06));border:1px solid rgba(178,155,255,.42);box-shadow:0 0 20px rgba(178,155,255,.12)}
+.sb-left{display:flex;align-items:center;gap:12px;min-width:0;flex:1}
+.sb-dot{width:10px;height:10px;border-radius:50%;background:currentColor;flex:0 0 10px;animation:pulse 1.4s infinite}
+.status-banner.online .sb-dot{color:var(--cyan);box-shadow:0 0 14px var(--cyan)}
+.status-banner.starting .sb-dot,.status-banner.reconnecting .sb-dot{color:var(--orange);box-shadow:0 0 14px var(--orange)}
+.status-banner.error .sb-dot{color:var(--danger);box-shadow:0 0 14px var(--danger)}
+.status-banner.idle .sb-dot,.status-banner.stopped .sb-dot{color:var(--dim);animation:none}
+.status-banner.match .sb-dot{color:var(--violet);box-shadow:0 0 14px var(--violet)}
+.sb-text{min-width:0;flex:1}
+.sb-title{font-size:14px;font-weight:900;letter-spacing:.3px;font-family:'JetBrains Mono',monospace;text-transform:uppercase}
+.status-banner.online .sb-title{color:var(--cyan)}
+.status-banner.starting .sb-title,.status-banner.reconnecting .sb-title{color:var(--orange)}
+.status-banner.error .sb-title{color:var(--danger)}
+.status-banner.idle .sb-title,.status-banner.stopped .sb-title{color:var(--dim)}
+.status-banner.match .sb-title{color:var(--violet)}
+.sb-msg{font-size:11.5px;color:var(--dim);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+.main-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:15px 20px;border-radius:14px;font-weight:900;font-size:14px;border:1px solid transparent;transition:all .2s;min-height:52px}
+.btn-primary{background:var(--accent);color:#0b1015;box-shadow:0 10px 26px rgba(77,166,255,.18)}
+.btn-primary:hover{background:#7ab8ff;transform:translateY(-1px)}
+.btn-primary:disabled{opacity:.5;cursor:not-allowed}
+.btn-danger{background:rgba(255,119,119,.10);color:#ff9b9b;border-color:rgba(255,119,119,.32)}
+.btn-danger:hover{background:rgba(255,119,119,.18);border-color:var(--danger)}
+.btn-danger:disabled{opacity:.5;cursor:not-allowed}
+.btn-block{width:100%}
+
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.s-card{padding:18px 16px;border-radius:18px;background:linear-gradient(155deg,rgba(20,30,38,.96),rgba(11,17,23,.96));border:1px solid var(--line);transition:all .3s}
+.s-card:hover{border-color:var(--line-3)}
+.s-card.full{grid-column:1 / -1}
+.s-card.match-card{border-color:rgba(178,155,255,.42);background:linear-gradient(155deg,rgba(178,155,255,.10),rgba(11,17,23,.96))}
+.s-top{display:flex;align-items:center;gap:9px;margin-bottom:12px}
+.s-ico{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-size:14px;background:rgba(77,166,255,.08);color:var(--accent);border:1px solid rgba(77,166,255,.16)}
+.s-card:nth-child(2) .s-ico{background:rgba(99,222,209,.08);color:var(--cyan);border-color:rgba(99,222,209,.16)}
+.s-card:nth-child(3) .s-ico{background:rgba(178,155,255,.08);color:var(--violet);border-color:rgba(178,155,255,.16)}
+.s-card:nth-child(4) .s-ico{background:rgba(255,173,112,.08);color:var(--orange);border-color:rgba(255,173,112,.16)}
+.s-lbl{font-size:10.5px;font-weight:900;letter-spacing:1.4px;color:var(--dim);text-transform:uppercase}
+.s-val{font-size:28px;font-weight:900;letter-spacing:-1px;font-family:'JetBrains Mono',monospace;line-height:1}
+.s-val.accent{color:var(--accent)}
+.s-val.cyan{color:var(--cyan)}
+.s-val.violet{color:var(--violet)}
+.s-val.orange{color:var(--orange)}
+.s-val .unit{font-size:13px;color:var(--faint);font-weight:700;margin-left:4px;letter-spacing:0}
+.s-sub{margin-top:8px;font-size:11.5px;color:var(--faint);font-weight:600;font-family:'JetBrains Mono',monospace}
+
+.info-panel{padding:20px;border-radius:20px;margin-bottom:14px;background:linear-gradient(155deg,rgba(20,30,38,.96),rgba(11,17,23,.96));border:1px solid var(--line)}
+.info-title{display:flex;align-items:center;gap:9px;font-size:14.5px;font-weight:900;margin-bottom:14px}
+.info-title i{color:var(--accent);font-size:14px}
+.info-row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
+.info-row:last-child{border-bottom:0;padding-bottom:0}
+.info-l{color:var(--dim);font-size:12.5px;font-weight:700;display:flex;align-items:center;gap:8px}
+.info-l i{color:var(--cyan);font-size:12px;width:14px;text-align:center}
+.info-v{font:800 13.5px 'JetBrains Mono',monospace;color:var(--white);text-align:right;word-break:break-all;max-width:60%}
+.info-v.mono{font-size:12.5px;color:var(--dim)}
+.info-v.accent{color:var(--accent)}
+
+.danger-panel{padding:20px;border-radius:20px;margin-bottom:14px;background:linear-gradient(155deg,rgba(255,119,119,.06),rgba(255,119,119,.02));border:1px solid rgba(255,119,119,.20)}
+.danger-title{display:flex;align-items:center;gap:9px;font-size:14.5px;font-weight:900;margin-bottom:8px;color:#ff9b9b}
+.danger-title i{color:var(--danger);font-size:14px}
+.danger-panel p{color:var(--dim);font-size:12.5px;line-height:1.6;margin-bottom:14px}
+
+.bnav{position:fixed;bottom:0;left:0;right:0;z-index:50;display:grid;grid-template-columns:repeat(4,1fr);background:rgba(10,16,22,.94);border-top:1px solid var(--line-2);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);padding:9px 10px max(9px, env(safe-area-inset-bottom));box-shadow:0 -10px 34px rgba(0,0,0,.28)}
+.bn{display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 4px;border-radius:13px;color:var(--dim);transition:all .18s;font-weight:800}
+.bn i{font-size:18px;line-height:1}
+.bn span{font-size:9.5px;letter-spacing:.5px;text-transform:uppercase}
+.bn:hover{color:var(--white)}
+.bn.active{color:var(--accent);background:rgba(77,166,255,.09);border:1px solid rgba(77,166,255,.18)}
+.bn.plus{color:var(--accent)}
+.bn.plus i{font-size:22px}
+
+.toast{position:fixed;bottom:calc(90px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%) translateY(120%);padding:13px 20px;border-radius:13px;background:var(--accent);color:#0b1015;font-weight:900;font-size:13.5px;z-index:99;box-shadow:0 14px 40px rgba(0,0,0,.4);transition:transform .3s ease;white-space:nowrap;max-width:92vw;overflow:hidden;text-overflow:ellipsis}
+.toast.show{transform:translateX(-50%) translateY(0)}
+.toast.err{background:#ff8585;color:#240a0a}
+
+@media(max-width:400px){
+  .hero-avatar{width:66px;height:66px;flex:0 0 66px;font-size:29px;border-radius:20px}
+  .hero-name{font-size:19px}
+  .s-val{font-size:24px}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="hdr">
+    <div class="hdr-left">
+      <div class="logo"><i class="fa-solid fa-bolt"></i></div>
+      <div class="brand">
+        <h1>ᴿᴱˣ TEAM</h1>
+        <div class="brand-row">
+          <span class="live-tag">DETAIL</span>
+          <span class="user">{{ user.username }}</span>
+        </div>
+      </div>
+    </div>
+    <a class="icon-btn" href="/dashboard" title="Back">
+      <i class="fa-solid fa-arrow-left"></i>
+    </a>
+  </header>
+
+  <div class="hero-card">
+    <div class="hero-top">
+      <div class="hero-avatar" id="hero-avatar">
+        {{ (account.nickname or account.game_id or account.uid)[0]|upper }}
+      </div>
+      <div class="hero-body">
+        <div class="hero-name" id="hero-name">
+          {{ account.nickname or 'ID ' + (account.game_id or account.uid) }}
+        </div>
+        <div class="hero-row">
+          <span class="region-pill">ME</span>
+          <span class="mode-badge {{ account.mode or 'admin' }}">{{ (account.mode or 'admin')|upper }}</span>
+          <span class="hero-id" id="hero-id">ID: {{ account.game_id or '—' }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="status-banner {{ account.status or 'stopped' }}" id="status-banner">
+      <div class="sb-left">
+        <span class="sb-dot"></span>
+        <div class="sb-text">
+          <div class="sb-title" id="sb-title">
+            {% if account.status == 'online' %}SEARCHING{% else %}{{ (account.status or 'stopped')|upper }}{% endif %}
+          </div>
+          <div class="sb-msg" id="sb-msg">
+            {% if account.status == 'online' %}Searching for matches...{% else %}Not running{% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="main-actions">
+    <button class="btn btn-primary" onclick="startAcc()"><i class="fa-solid fa-play"></i> Start</button>
+    <button class="btn btn-danger" onclick="stopAcc()"><i class="fa-solid fa-stop"></i> Stop</button>
+  </div>
+
+  <div class="stats-grid">
+    <div class="s-card">
+      <div class="s-top"><div class="s-ico"><i class="fa-solid fa-trophy"></i></div><div class="s-lbl">Level</div></div>
+      <div class="s-val accent" id="val-level">{{ account.level or 1 }}</div>
+    </div>
+    <div class="s-card">
+      <div class="s-top"><div class="s-ico"><i class="fa-solid fa-angles-up"></i></div><div class="s-lbl">Gained</div></div>
+      <div class="s-val cyan" id="val-gained">+{{ account.exp_gained or 0 }}</div>
+      <div class="s-sub">levels gained</div>
+    </div>
+    <div class="s-card">
+      <div class="s-top"><div class="s-ico"><i class="fa-solid fa-gamepad"></i></div><div class="s-lbl">Matches</div></div>
+      <div class="s-val violet" id="val-matches">{{ account.matches_played or 0 }}</div>
+      <div class="s-sub">{% if account.mode == 'risk' %}unlimited{% else %}max {{ account.max_matches or 500 }}{% endif %}</div>
+    </div>
+    <div class="s-card">
+      <div class="s-top"><div class="s-ico"><i class="fa-solid fa-fire"></i></div><div class="s-lbl">EXP</div></div>
+      <div class="s-val orange" id="val-exp">{{ account.exp or 0 }}</div>
+      <div class="s-sub">current total</div>
+    </div>
+    <div class="s-card full" id="active-card">
+      <div class="s-top">
+        <div class="s-ico" id="active-ico" style="background:rgba(99,222,209,.08);color:var(--cyan);border-color:rgba(99,222,209,.16)"><i class="fa-solid fa-circle-nodes"></i></div>
+        <div class="s-lbl">Active matches</div>
+      </div>
+      <div style="display:flex;align-items:baseline;gap:12px">
+        <div class="s-val cyan" id="val-active">{{ account.active_matches or 0 }}</div>
+        <span class="s-sub" style="margin:0" id="val-active-sub">currently running</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-panel">
+    <div class="info-title"><i class="fa-solid fa-circle-info"></i> Account information</div>
+    <div class="info-row"><span class="info-l"><i class="fa-solid fa-fingerprint"></i> ID</span><span class="info-v mono" id="info-gameid">{{ account.game_id or '—' }}</span></div>
+    <div class="info-row"><span class="info-l"><i class="fa-solid fa-globe"></i> Region</span><span class="info-v accent">ME</span></div>
+    <div class="info-row"><span class="info-l"><i class="fa-solid fa-user"></i> Nickname</span><span class="info-v" id="info-nick">{{ account.nickname or '—' }}</span></div>
+    <div class="info-row"><span class="info-l"><i class="fa-solid fa-sliders"></i> Mode</span><span class="info-v">{{ (account.mode or 'admin')|upper }}</span></div>
+    <div class="info-row"><span class="info-l"><i class="fa-solid fa-calendar"></i> Added</span><span class="info-v mono">{{ (account.created_at or '')[:16].replace('T',' ') }}</span></div>
+  </div>
+
+  <div class="danger-panel">
+    <div class="danger-title"><i class="fa-solid fa-triangle-exclamation"></i> Danger zone</div>
+    <p>Deleting this account will stop all its workers and remove it permanently from your workspace.</p>
+    <button class="btn btn-danger btn-block" onclick="delAcc()"><i class="fa-solid fa-trash"></i> Delete account</button>
+  </div>
+
+</div>
+
+<nav class="bnav">
+  <a class="bn" href="/dashboard"><i class="fa-solid fa-chart-pie"></i><span>Overview</span></a>
+  <a class="bn active" href="/dashboard"><i class="fa-solid fa-users"></i><span>Accounts</span></a>
+  <a class="bn" href="/logout"><i class="fa-solid fa-right-from-bracket"></i><span>Log out</span></a>
+  <a class="bn plus" href="/add_account"><i class="fa-solid fa-plus"></i><span>Add</span></a>
+</nav>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const AID = {{ account.id }};
+const $ = s => document.querySelector(s);
+
+const STATUS_TEXT = {
+  'online': 'SEARCHING',
+  'starting': 'CONNECTING',
+  'reconnecting': 'RECONNECTING',
+  'error': 'ERROR',
+  'stopped': 'STOPPED',
+  'idle': 'IDLE',
+  'match': 'MATCH'
+};
+
+function toast(msg, err=false){
+  const t = $('#toast');
+  t.textContent = msg;
+  t.classList.toggle('err', err);
+  t.classList.add('show');
+  clearTimeout(t._t);
+  t._t = setTimeout(()=>t.classList.remove('show'), 2400);
+}
+
+async function api(url, opts={}){
+  const r = await fetch(url, {credentials:'same-origin',headers:{'Content-Type':'application/json'},...opts});
+  let d = null; try { d = await r.json(); } catch(_){}
+  return {ok:r.ok, data:d};
+}
+
+async function startAcc(){
+  const r = await api(`/api/accounts/${AID}/start`, {method:'POST'});
+  if (r.ok){ toast('Starting...'); refresh(); } else toast(r.data?.error || 'Failed', true);
+}
+async function stopAcc(){
+  const r = await api(`/api/accounts/${AID}/stop`, {method:'POST'});
+  if (r.ok){ toast('Stopped'); refresh(); } else toast(r.data?.error || 'Failed', true);
+}
+async function delAcc(){
+  if (!confirm('Delete this account permanently?')) return;
+  const r = await api(`/api/accounts/${AID}`, {method:'DELETE'});
+  if (r.ok){ toast('Deleted'); setTimeout(()=>location.href='/dashboard', 600); }
+  else toast(r.data?.error || 'Failed', true);
+}
+
+async function refresh(){
+  try {
+    const r = await fetch(`/api/accounts/${AID}/detail`, {credentials:'same-origin'});
+    if (!r.ok) return;
+    const j = await r.json();
+    const a = j.account || {};
+
+    if (a.level != null) $('#val-level').textContent = a.level;
+    if (a.exp_gained != null) $('#val-gained').textContent = '+' + Number(a.exp_gained).toLocaleString();
+    if (a.matches_played != null) $('#val-matches').textContent = Number(a.matches_played).toLocaleString();
+    if (a.exp != null) $('#val-exp').textContent = Number(a.exp).toLocaleString();
+
+    const activeN = Number(a.active_matches || 0);
+    $('#val-active').textContent = activeN;
+
+    const baseStatus = a.status || 'stopped';
+    const effectiveStatus = activeN > 0 ? 'match' : baseStatus;
+    const titleText = STATUS_TEXT[effectiveStatus] || effectiveStatus.toUpperCase();
+
+    let msgText = '';
+    if (activeN > 0) {
+      msgText = 'In-game — playing a match';
+    } else if (baseStatus === 'online') {
+      msgText = 'Searching for matches...';
+    } else if (baseStatus === 'starting') {
+      msgText = 'Authenticating with server...';
+    } else if (baseStatus === 'reconnecting') {
+      msgText = 'Reconnecting...';
+    } else if (baseStatus === 'error') {
+      msgText = a.message || 'An error occurred';
+    } else {
+      msgText = 'Not running';
+    }
+
+    const banner = $('#status-banner');
+    if (banner) banner.className = 'status-banner ' + effectiveStatus;
+    $('#sb-title').textContent = titleText;
+    $('#sb-msg').textContent = msgText;
+
+    const activeCard = $('#active-card');
+    const activeIco = $('#active-ico');
+    const valActive = $('#val-active');
+    const subActive = $('#val-active-sub');
+
+    if (activeN > 0) {
+      if (activeCard) activeCard.classList.add('match-card');
+      if (activeIco) {
+        activeIco.style.background = 'rgba(178,155,255,.10)';
+        activeIco.style.color = 'var(--violet)';
+        activeIco.style.borderColor = 'rgba(178,155,255,.24)';
+      }
+      if (valActive) valActive.style.color = 'var(--violet)';
+      if (subActive) subActive.textContent = 'currently playing';
+    } else {
+      if (activeCard) activeCard.classList.remove('match-card');
+      if (activeIco) {
+        activeIco.style.background = 'rgba(99,222,209,.08)';
+        activeIco.style.color = 'var(--cyan)';
+        activeIco.style.borderColor = 'rgba(99,222,209,.16)';
+      }
+      if (valActive) valActive.style.color = 'var(--cyan)';
+      if (subActive) subActive.textContent = 'currently running';
+    }
+
+    if (a.nickname){
+      $('#hero-name').textContent = a.nickname;
+      $('#hero-avatar').textContent = a.nickname[0].toUpperCase();
+      $('#info-nick').textContent = a.nickname;
+    }
+    if (a.game_id){
+      $('#hero-id').textContent = 'ID: ' + a.game_id;
+      $('#info-gameid').textContent = a.game_id;
+    }
+  } catch(_){}
+}
+
+refresh();
+setInterval(refresh, 3000);
+</script>
+
+<script src="/static/music.js"></script>
+</body>
+</html>

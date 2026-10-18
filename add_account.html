@@ -1,0 +1,747 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#070b10">
+<title>Add Account | ᴿᴱˣ TEAM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#070b10;--black-2:#0d131a;--black-3:#111a22;--black-4:#18232d;--black-5:#202d38;
+  --white:#f4f7f2;--dim:#9aabaa;--faint:#6d7d7c;
+  --line:rgba(199,222,213,.08);--line-2:rgba(199,222,213,.16);--line-3:rgba(199,222,213,.26);
+  --accent:#4da6ff;--accent-2:#3d8fe6;--cyan:#63ded1;--violet:#b29bff;
+  --orange:#ffad70;--danger:#ff7777;--success:#9de78b;
+}
+html,body{background:var(--black);color:var(--white);font-family:'Outfit',sans-serif;min-height:100vh;-webkit-font-smoothing:antialiased}
+body{
+  background:
+    radial-gradient(ellipse at 7% 0%, rgba(58,101,90,.16), transparent 35%),
+    radial-gradient(ellipse at 100% 42%, rgba(80,70,126,.10), transparent 31%),
+    linear-gradient(160deg,#0a1015 0%,#070b10 62%,#090d12 100%);
+  background-attachment:fixed;
+  padding-bottom:110px;
+}
+a{color:inherit;text-decoration:none}
+button,input,label{font:inherit;color:inherit}
+button{cursor:pointer;background:none;border:0}
+.wrap{max-width:920px;margin:0 auto;padding:0 16px}
+
+.hdr{display:flex;align-items:center;justify-content:space-between;padding:16px 0 18px;gap:12px}
+.hdr-left{display:flex;align-items:center;gap:12px;min-width:0;flex:1}
+.logo{width:44px;height:44px;flex:0 0 44px;border-radius:13px;background:linear-gradient(145deg,#7ab8ff,#4da6ff);color:#0b1015;display:grid;place-items:center;font-size:19px;box-shadow:0 8px 24px rgba(77,166,255,.22)}
+.brand h1{font-size:19px;font-weight:900;letter-spacing:-.4px}
+.brand-row{display:flex;align-items:center;gap:7px;margin-top:3px}
+.live-tag{display:inline-flex;align-items:center;gap:5px;padding:3px 9px;border-radius:99px;background:rgba(77,166,255,.10);border:1px solid rgba(77,166,255,.24);color:var(--accent);font-size:9.5px;font-weight:900;letter-spacing:1px}
+.live-tag::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent)}
+.brand-row .user{font-size:11.5px;color:var(--dim);font-weight:600}
+.icon-btn{width:44px;height:44px;flex:0 0 44px;border-radius:13px;background:var(--black-3);border:1px solid var(--line-2);display:grid;place-items:center;color:var(--white);font-size:15px;transition:all .2s}
+.icon-btn:hover{background:var(--black-4);border-color:var(--accent);color:var(--accent)}
+.icon-btn.spin i{animation:spin .8s linear}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.top-bar{display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+.top-bar .btn{flex:1;min-width:130px}
+
+.main-grid{
+  display:grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap:14px;
+  align-items:flex-start;
+}
+@media (max-width:820px){
+  .main-grid{grid-template-columns:1fr}
+}
+
+.mode-col{
+  display:flex;flex-direction:column;gap:10px;
+  padding:14px;border-radius:20px;
+  background:linear-gradient(155deg,rgba(20,30,38,.96),rgba(11,17,23,.96));
+  border:1px solid var(--line);
+}
+.mode-label{
+  font-size:11px;font-weight:900;letter-spacing:1.4px;
+  color:var(--dim);text-transform:uppercase;margin-bottom:2px;
+}
+.mode-opt{
+  padding:22px 14px;border-radius:16px;cursor:pointer;
+  background:rgba(6,11,15,.65);border:2px solid var(--line-2);
+  transition:all .2s;text-align:center;
+}
+.mode-opt:hover{border-color:var(--line-3);background:rgba(6,11,15,.85)}
+.mode-opt.active{border-color:var(--accent);background:rgba(77,166,255,.06);box-shadow:0 0 0 1px rgba(77,166,255,.2) inset}
+.mode-opt.active.risk{border-color:var(--orange);background:rgba(255,173,112,.06);box-shadow:0 0 0 1px rgba(255,173,112,.2) inset}
+.mode-opt i{font-size:26px;margin-bottom:10px;display:block;color:var(--cyan)}
+.mode-opt.risk i{color:var(--orange)}
+.mode-opt.active i{color:var(--accent)}
+.mode-opt.active.risk i{color:var(--orange)}
+.mode-opt b{display:block;font-size:14px;font-weight:900;letter-spacing:.3px;margin-bottom:4px;font-family:'JetBrains Mono',monospace}
+.mode-opt small{display:block;font-size:11.5px;color:var(--dim);font-weight:600}
+
+.form-col{
+  padding:20px;border-radius:20px;
+  background:linear-gradient(155deg,rgba(20,30,38,.96),rgba(11,17,23,.96));
+  border:1px solid var(--line);
+  box-shadow:0 12px 34px rgba(0,0,0,.18);
+}
+.form-col-title{
+  font-size:11px;font-weight:900;letter-spacing:1.4px;
+  color:var(--dim);text-transform:uppercase;
+  display:flex;align-items:center;gap:8px;margin-bottom:14px;
+}
+.form-col-title i{color:var(--cyan);font-size:14px}
+
+.guest-tab{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:10px 14px;border-radius:12px;margin-bottom:18px;
+  background:rgba(99,222,209,.06);border:1px solid rgba(99,222,209,.22);
+  font-size:13px;font-weight:900;color:var(--cyan);
+  font-family:'JetBrains Mono',monospace;
+}
+.guest-tab i{font-size:15px}
+
+.field{margin-bottom:14px}
+.field label{display:block;margin-bottom:7px;color:var(--dim);font-size:11px;font-weight:900;letter-spacing:1.1px;text-transform:uppercase}
+.inp{display:flex;align-items:center;gap:11px;padding:0 15px;border-radius:14px;background:#080e13;border:1px solid var(--line-2);transition:border-color .2s}
+.inp:focus-within{border-color:var(--accent)}
+.inp > i{color:var(--cyan);font-size:14px}
+.inp input{flex:1;padding:15px 0;border:0;outline:0;background:transparent;color:var(--white);font-size:14.5px;font-weight:500}
+.inp input::placeholder{color:#6a7a78}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:14px 20px;border-radius:13px;font-weight:900;font-size:14px;border:1px solid transparent;transition:all .2s;min-height:50px}
+.btn-primary{background:var(--accent);color:#0b1015;box-shadow:0 10px 26px rgba(77,166,255,.18)}
+.btn-primary:hover{background:#7ab8ff;transform:translateY(-1px)}
+.btn-primary:disabled{opacity:.6;cursor:not-allowed;transform:none}
+.btn-ghost{background:var(--black-3);border-color:var(--line-2);color:var(--white)}
+.btn-ghost:hover{background:var(--black-4);border-color:var(--line-3)}
+.btn-block{width:100%}
+
+.upload{
+  display:block;padding:44px 24px;
+  border:2px dashed var(--line-3);border-radius:18px;
+  text-align:center;cursor:pointer;
+  background:rgba(8,14,19,.5);transition:all .2s;
+}
+.upload:hover,.upload.dragover{border-color:var(--accent);background:rgba(77,166,255,.055)}
+.upload input{display:none}
+.upload i.upload-icon{font-size:56px;color:var(--accent);margin-bottom:16px;display:block}
+.upload b{display:block;font-size:16px;font-weight:900;margin-bottom:8px;letter-spacing:.2px}
+.upload small{color:var(--dim);font-size:12.5px;line-height:1.7;display:block}
+.upload small code{background:var(--black-3);padding:2px 8px;border-radius:5px;font-family:'JetBrains Mono',monospace;color:var(--accent);font-size:12px}
+
+.file-preview{
+  display:none;padding:0;border-radius:18px;margin-top:14px;
+  background:linear-gradient(155deg,rgba(15,22,28,.96),rgba(9,15,20,.96));
+  border:1px solid var(--line-2);
+  overflow:hidden;
+}
+.file-preview.show{display:block;animation:fadeIn .3s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+.fp-head{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  padding:14px 16px;border-bottom:1px solid var(--line);
+}
+.fp-left{display:flex;align-items:center;gap:10px}
+.fp-icon{
+  width:36px;height:36px;flex:0 0 36px;border-radius:10px;
+  background:rgba(77,166,255,.10);color:var(--accent);
+  display:grid;place-items:center;font-size:16px;
+  border:1px solid rgba(77,166,255,.20);
+}
+.fp-name{font-size:13px;font-weight:900;font-family:'JetBrains Mono',monospace;color:var(--white)}
+.fp-sub{font-size:10.5px;color:var(--faint);margin-top:2px}
+.fp-count{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:5px 12px;border-radius:99px;
+  background:var(--accent);color:#0b1015;
+  font:900 11px 'JetBrains Mono',monospace;letter-spacing:.5px;
+}
+.fp-count.over{background:var(--danger);color:#1a0707}
+
+.fp-list{max-height:340px;overflow-y:auto;padding:12px}
+.fp-list::-webkit-scrollbar{width:6px}
+.fp-list::-webkit-scrollbar-track{background:transparent}
+.fp-list::-webkit-scrollbar-thumb{background:var(--line-3);border-radius:99px}
+
+.fp-item{
+  display:flex;align-items:center;gap:10px;
+  padding:11px 12px;border-radius:11px;
+  background:rgba(0,0,0,.22);
+  border-left:3px solid var(--accent);
+  margin-bottom:6px;
+  font-family:'JetBrains Mono',monospace;font-size:11.5px;
+}
+.fp-item:last-child{margin-bottom:0}
+.fp-item.bad{border-left-color:var(--danger);color:#ff9b9b}
+.fp-item .idx{
+  min-width:36px;color:var(--faint);font-weight:700;
+  font-size:10.5px;
+}
+.fp-item .val{flex:1;color:var(--white);word-break:break-all}
+.fp-item.bad .val{color:#ff9b9b}
+.fp-item .why{
+  font-size:9.5px;color:var(--danger);
+  padding:2px 7px;border-radius:6px;
+  background:rgba(255,119,119,.10);
+  border:1px solid rgba(255,119,119,.20);
+  font-family:'Outfit',sans-serif;font-weight:800;
+  white-space:nowrap;
+}
+.fp-more{
+  padding:10px;text-align:center;
+  color:var(--dim);font-size:11px;font-style:italic;
+  border-top:1px dashed var(--line);
+  margin-top:6px;
+}
+
+.limit-warn{
+  display:none;
+  padding:20px;border-radius:18px;margin-top:14px;
+  background:linear-gradient(155deg,rgba(255,119,119,.08),rgba(255,119,119,.02));
+  border:1px solid rgba(255,119,119,.28);
+}
+.limit-warn.show{display:block;animation:fadeIn .3s ease}
+.lw-head{display:flex;align-items:flex-start;gap:14px;margin-bottom:16px}
+.lw-icon{
+  width:46px;height:46px;flex:0 0 46px;border-radius:14px;
+  background:rgba(255,119,119,.14);color:var(--danger);
+  border:1px solid rgba(255,119,119,.30);
+  display:grid;place-items:center;font-size:20px;
+}
+.lw-text{flex:1;min-width:0}
+.lw-text b{display:block;font-size:14.5px;font-weight:900;color:#ff9b9b;margin-bottom:6px;line-height:1.5}
+.lw-text span{display:block;font-size:12.5px;color:var(--dim);line-height:1.7}
+
+.lw-numbers{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
+.lw-num{
+  padding:16px 12px;border-radius:14px;text-align:center;
+  background:rgba(6,11,15,.65);border:1px solid var(--line-2);
+}
+.lw-num small{
+  display:block;font-size:10px;font-weight:900;
+  letter-spacing:1.4px;color:var(--dim);text-transform:uppercase;
+  margin-bottom:6px;
+}
+.lw-num b{
+  display:block;font-size:28px;font-weight:900;
+  font-family:'JetBrains Mono',monospace;color:var(--white);
+  letter-spacing:-1px;
+}
+.lw-num.warn b{color:var(--danger)}
+
+.lw-btn{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  width:100%;padding:16px;border-radius:14px;
+  background:var(--accent);color:#0b1015;
+  font-weight:900;font-size:14px;
+  box-shadow:0 10px 26px rgba(77,166,255,.18);
+  transition:all .2s;
+}
+.lw-btn:hover{background:#7ab8ff;transform:translateY(-1px)}
+
+.instructions{
+  padding:18px 20px;border-radius:18px;margin-top:14px;
+  background:linear-gradient(155deg,rgba(77,166,255,.06),rgba(11,17,23,.96));
+  border:1px solid rgba(77,166,255,.22);
+}
+.ins-title{
+  display:flex;align-items:center;gap:9px;
+  font-size:13px;font-weight:900;letter-spacing:1.2px;
+  color:var(--accent);text-transform:uppercase;margin-bottom:14px;
+}
+.ins-title i{
+  width:22px;height:22px;display:grid;place-items:center;
+  border-radius:50%;background:rgba(77,166,255,.14);
+  font-size:11px;
+}
+.ins-list{list-style:none;padding:0;margin:0}
+.ins-list li{
+  display:flex;gap:10px;
+  padding:8px 0;
+  font-size:12.5px;line-height:1.7;color:var(--dim);
+}
+.ins-list li b{color:var(--white);font-weight:800}
+.ins-list li i{
+  flex:0 0 18px;
+  color:var(--accent);font-size:13px;margin-top:3px;
+}
+.ins-list code{
+  background:rgba(0,0,0,.35);padding:2px 7px;border-radius:5px;
+  font-family:'JetBrains Mono',monospace;
+  color:var(--accent);font-size:11.5px;
+}
+
+.form-tabs{
+  display:grid;grid-template-columns:1fr 1fr;gap:5px;
+  margin-bottom:16px;padding:5px;border-radius:14px;
+  background:#080e13;border:1px solid var(--line);
+}
+.form-tab{
+  padding:12px 10px;border-radius:10px;
+  color:var(--dim);font-weight:800;font-size:13px;
+  border:1px solid transparent;transition:all .18s;
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+}
+.form-tab.active{
+  background:rgba(77,166,255,.10);color:var(--accent);
+  border-color:rgba(77,166,255,.28);
+}
+.form-tab i{font-size:13px}
+
+.tabc{display:none}
+.tabc.active{display:block;animation:fadeIn .25s ease}
+
+.result{
+  display:none;padding:16px;margin-top:14px;
+  background:rgba(157,231,139,.07);border:1px solid rgba(157,231,139,.24);
+  border-radius:13px;font-size:13px;line-height:1.9;
+}
+.result.show{display:block}
+.result b{color:var(--accent);font-family:'JetBrains Mono',monospace}
+.result.err{background:rgba(255,119,119,.07);border-color:rgba(255,119,119,.24)}
+
+.bnav{position:fixed;bottom:0;left:0;right:0;z-index:50;display:grid;grid-template-columns:repeat(4,1fr);background:rgba(10,16,22,.94);border-top:1px solid var(--line-2);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);padding:9px 10px max(9px, env(safe-area-inset-bottom));box-shadow:0 -10px 34px rgba(0,0,0,.28)}
+.bn{display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 4px;border-radius:13px;color:var(--dim);transition:all .18s;font-weight:800}
+.bn i{font-size:18px;line-height:1}
+.bn span{font-size:9.5px;letter-spacing:.5px;text-transform:uppercase}
+.bn:hover{color:var(--white)}
+.bn.active{color:var(--accent);background:rgba(77,166,255,.09);border:1px solid rgba(77,166,255,.18)}
+.bn.plus{color:var(--accent)}
+.bn.plus i{font-size:22px}
+
+.toast{position:fixed;bottom:calc(90px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%) translateY(120%);padding:13px 20px;border-radius:13px;background:var(--accent);color:#0b1015;font-weight:900;font-size:13.5px;z-index:99;box-shadow:0 14px 40px rgba(0,0,0,.4);transition:transform .3s ease;white-space:nowrap;max-width:92vw;overflow:hidden;text-overflow:ellipsis}
+.toast.show{transform:translateX(-50%) translateY(0)}
+.toast.err{background:#ff8585;color:#240a0a}
+
+@media (max-width:520px){
+  .fp-item .idx{min-width:28px;font-size:9.5px}
+  .upload{padding:34px 16px}
+  .upload i.upload-icon{font-size:46px}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="hdr">
+    <div class="hdr-left">
+      <div class="logo"><i class="fa-solid fa-bolt"></i></div>
+      <div class="brand">
+        <h1>ᴿᴱˣ TEAM</h1>
+        <div class="brand-row">
+          <span class="live-tag">LIVE</span>
+          <span class="user">{{ user.username }}</span>
+        </div>
+      </div>
+    </div>
+    <button class="icon-btn" id="reload-btn" title="Reload">
+      <i class="fa-solid fa-rotate"></i>
+    </button>
+  </header>
+
+  <div class="top-bar">
+    <a class="btn btn-ghost" href="/dashboard">
+      <i class="fa-solid fa-arrow-left"></i> Back
+    </a>
+    <button class="btn btn-primary" onclick="focusForm()">
+      <i class="fa-solid fa-user-plus"></i> Add Account
+    </button>
+  </div>
+
+  <div class="main-grid">
+
+    <div class="mode-col">
+      <div class="mode-label">Mode</div>
+      <div class="mode-opt active" data-mode="admin">
+        <i class="fa-solid fa-user-shield"></i>
+        <b>ADMIN MODE</b>
+        <small>500 games</small>
+      </div>
+      <div class="mode-opt risk" data-mode="risk">
+        <i class="fa-solid fa-skull"></i>
+        <b>RISK MODE</b>
+        <small>Unlimited</small>
+      </div>
+      <input type="hidden" id="account_mode" value="admin">
+    </div>
+
+    <div class="form-col" id="form-col">
+      <div class="form-col-title">
+        <i class="fa-solid fa-plus-circle"></i> Add Account
+      </div>
+
+      <div class="form-tabs">
+        <button class="form-tab active" data-tab="single">
+          <i class="fa-solid fa-user"></i> Guest Account
+        </button>
+        <button class="form-tab" data-tab="bulk">
+          <i class="fa-solid fa-file-arrow-up"></i> Upload File
+        </button>
+      </div>
+
+      <div class="tabc active" id="tab-single">
+        <div class="guest-tab">
+          <i class="fa-solid fa-user-astronaut"></i>
+          Guest Account — UID + Password
+        </div>
+        <form id="single-form" autocomplete="off">
+          <div class="field">
+            <label>Guest UID</label>
+            <div class="inp">
+              <i class="fa-solid fa-id-badge"></i>
+              <input id="uid" name="uid" placeholder="e.g. 7644913583" required>
+            </div>
+          </div>
+          <div class="field">
+            <label>Guest Password</label>
+            <div class="inp">
+              <i class="fa-solid fa-lock"></i>
+              <input id="password" name="password" type="password" placeholder="e.g. Rex_Team482910" required>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block" id="single-submit">
+            <i class="fa-solid fa-plus"></i> Add Account
+          </button>
+        </form>
+      </div>
+
+      <div class="tabc" id="tab-bulk">
+        <form id="bulk-form" autocomplete="off">
+          <label class="upload" id="upload-zone" for="file">
+            <input type="file" id="file" name="file" accept=".txt">
+            <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
+            <b>Choose or drop your file</b>
+            <small>Only .txt files — one account per line: <code>uid:password</code></small>
+          </label>
+        </form>
+      </div>
+
+      <div class="file-preview" id="file-preview">
+        <div class="fp-head">
+          <div class="fp-left">
+            <div class="fp-icon"><i class="fa-solid fa-file-lines"></i></div>
+            <div>
+              <div class="fp-name" id="fp-name">acc.txt</div>
+              <div class="fp-sub" id="fp-sub">Ready to upload</div>
+            </div>
+          </div>
+          <span class="fp-count" id="fp-count">0 accounts</span>
+        </div>
+        <div class="fp-list" id="fp-list"></div>
+      </div>
+
+      <div class="limit-warn" id="limit-warn">
+        <div class="lw-head">
+          <div class="lw-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+          <div class="lw-text">
+            <b>The file has more accounts than your limit.</b>
+            <span>Only the first accounts that fit your quota will be added.</span>
+          </div>
+        </div>
+        <div class="lw-numbers">
+          <div class="lw-num">
+            <small>Your Limit</small>
+            <b id="lw-limit">{{ quota_max if quota_max < 999999 else '∞' }}</b>
+          </div>
+          <div class="lw-num warn">
+            <small>In File</small>
+            <b id="lw-file">0</b>
+          </div>
+        </div>
+        <button type="button" class="lw-btn" id="lw-upload">
+          <i class="fa-solid fa-cloud-arrow-up"></i>
+          Take first {{ quota_max if quota_max < 999999 else '∞' }} accounts (my limit)
+        </button>
+      </div>
+
+      <button type="button" class="btn btn-primary btn-block" id="bulk-submit" style="display:none;margin-top:14px">
+        <i class="fa-solid fa-cloud-arrow-up"></i> Upload
+      </button>
+
+      <div class="result" id="result"></div>
+
+    </div>
+  </div>
+
+  <div class="instructions">
+    <div class="ins-title">
+      <i class="fa-solid fa-info"></i> Instructions
+    </div>
+    <ul class="ins-list">
+      <li>
+        <i class="fa-solid fa-check"></i>
+        <div><b>Admin Mode</b> plays 500 games, then stops by itself. <b>Risk Mode</b> never stops.</div>
+      </li>
+      <li>
+        <i class="fa-solid fa-check"></i>
+        <div>Each account uses one of your servers. Check the servers counter above.</div>
+      </li>
+      <li>
+        <i class="fa-solid fa-check"></i>
+        <div>For <b>Guest</b>: enter numeric UID and its password exactly as given. Token: paste the full token.</div>
+      </li>
+      <li>
+        <i class="fa-solid fa-check"></i>
+        <div>Never share your account data with anyone, and don't play on the same account while the bot is running.</div>
+      </li>
+      <li>
+        <i class="fa-solid fa-check"></i>
+        <div>File format — one account per line: <code>uid:password</code> — no spaces around the colon.</div>
+      </li>
+    </ul>
+  </div>
+
+</div>
+
+<nav class="bnav">
+  <a class="bn" href="/dashboard" data-view="overview">
+    <i class="fa-solid fa-chart-pie"></i>
+    <span>Overview</span>
+  </a>
+  <a class="bn" href="/dashboard" data-view="accounts">
+    <i class="fa-solid fa-users"></i>
+    <span>Accounts</span>
+  </a>
+  <a class="bn" href="/logout">
+    <i class="fa-solid fa-right-from-bracket"></i>
+    <span>Log out</span>
+  </a>
+  <a class="bn plus active" href="/add_account">
+    <i class="fa-solid fa-plus"></i>
+    <span>Add</span>
+  </a>
+</nav>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const $ = (s, c=document) => c.querySelector(s);
+const $$ = (s, c=document) => [...c.querySelectorAll(s)];
+
+const QUOTA_MAX = {{ quota_max if quota_max < 999999 else 999999999 }};
+const QUOTA_USED = {{ quota_used }};
+const REMAINING = Math.max(0, QUOTA_MAX - QUOTA_USED);
+
+function toast(msg, err=false){
+  const t = $('#toast');
+  t.textContent = msg;
+  t.classList.toggle('err', err);
+  t.classList.add('show');
+  clearTimeout(t._t);
+  t._t = setTimeout(()=>t.classList.remove('show'), 2600);
+}
+
+function focusForm(){
+  $('#form-col').scrollIntoView({behavior:'smooth', block:'start'});
+  setTimeout(()=>{
+    const el = $('#tab-single').classList.contains('active') ? $('#uid') : $('#file');
+    el?.focus();
+  }, 400);
+}
+
+$$('.form-tab').forEach(t => t.addEventListener('click', () => {
+  $$('.form-tab').forEach(x => x.classList.remove('active'));
+  $$('.tabc').forEach(x => x.classList.remove('active'));
+  t.classList.add('active');
+  $('#tab-' + t.dataset.tab).classList.add('active');
+  if (t.dataset.tab === 'single') {
+    $('#file-preview').classList.remove('show');
+    $('#limit-warn').classList.remove('show');
+    $('#bulk-submit').style.display = 'none';
+  }
+}));
+
+$$('.mode-opt').forEach(opt => opt.addEventListener('click', () => {
+  $$('.mode-opt').forEach(x => x.classList.remove('active'));
+  opt.classList.add('active');
+  $('#account_mode').value = opt.dataset.mode;
+}));
+
+$('#single-form').addEventListener('submit', async e => {
+  e.preventDefault();
+  const btn = $('#single-submit');
+  btn.disabled = true;
+  const fd = new FormData(e.target);
+  fd.append('mode', 'single');
+  fd.append('account_mode', $('#account_mode').value);
+  try {
+    const res = await fetch('/add_account', {method:'POST', body:fd, credentials:'same-origin'});
+    const data = await res.json().catch(()=>({}));
+    if (data.ok && data.added > 0){
+      toast('Account added');
+      setTimeout(()=>location.href='/dashboard', 700);
+    } else if (data.ok && data.duplicates > 0){
+      toast('Account already exists', true);
+    } else {
+      toast(data.error || 'Failed', true);
+    }
+  } catch(e){ toast('Network error', true); }
+  btn.disabled = false;
+});
+
+const zone = $('#upload-zone');
+const fileInput = $('#file');
+['dragenter','dragover'].forEach(ev => zone.addEventListener(ev, e => {
+  e.preventDefault(); zone.classList.add('dragover');
+}));
+['dragleave','drop'].forEach(ev => zone.addEventListener(ev, e => {
+  e.preventDefault(); zone.classList.remove('dragover');
+}));
+zone.addEventListener('drop', e => {
+  if (e.dataTransfer.files.length){ fileInput.files = e.dataTransfer.files; showFilePreview(e.dataTransfer.files[0]); }
+});
+fileInput.addEventListener('change', () => {
+  if (fileInput.files.length) showFilePreview(fileInput.files[0]);
+});
+
+function escapeHtml(s){
+  return String(s).replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
+}
+
+function showFilePreview(file){
+  $('#fp-name').textContent = file.name;
+  const reader = new FileReader();
+  reader.onload = e => {
+    const text = e.target.result;
+    const rawLines = text.split(/\r?\n/);
+    const items = [];
+
+    for (let i = 0; i < rawLines.length; i++){
+      const line = rawLines[i];
+      const trimmed = line.trim();
+      if (!trimmed) continue;
+      if (trimmed.startsWith('#')) continue;
+
+      let status = 'ok';
+      let reason = '';
+      let uid = '';
+      let pw = '';
+
+      if (!trimmed.includes(':')){
+        status = 'bad';
+        reason = 'no colon';
+        uid = trimmed;
+      } else {
+        const parts = trimmed.split(':');
+        uid = (parts[0] || '').trim();
+        pw = parts.slice(1).join(':').trim();
+
+        if (!uid){
+          status = 'bad'; reason = 'empty UID';
+        } else if (!/^\d+$/.test(uid)){
+          status = 'bad'; reason = 'UID not numeric';
+        } else if (!pw){
+          status = 'bad'; reason = 'empty password';
+        } else if (/\s/.test(uid) || /\s/.test(pw)){
+          status = 'bad'; reason = 'spaces not allowed';
+        } else if (parts.length > 2){
+          status = 'bad'; reason = 'extra colon';
+        }
+      }
+
+      items.push({uid, pw, raw: trimmed, status, reason});
+    }
+
+    const okCount = items.filter(i => i.status === 'ok').length;
+    const totalCount = items.length;
+
+    $('#fp-count').textContent = totalCount + ' accounts';
+    $('#fp-count').classList.toggle('over', totalCount > REMAINING);
+
+    $('#fp-sub').textContent = `${okCount} valid · ${totalCount - okCount} rejected`;
+
+    const previewLimit = 30;
+    const listEl = $('#fp-list');
+    let html = '';
+
+    const display = items.slice(0, previewLimit);
+    display.forEach((it, i) => {
+      const num = '#' + (i + 1);
+      if (it.status === 'ok'){
+        html += `<div class="fp-item">
+          <span class="idx">${num}</span>
+          <span class="val">${escapeHtml(it.uid)}:${escapeHtml(it.pw)}</span>
+        </div>`;
+      } else {
+        html += `<div class="fp-item bad">
+          <span class="idx">${num}</span>
+          <span class="val">${escapeHtml(it.raw.slice(0, 40))}</span>
+          <span class="why">${escapeHtml(it.reason)}</span>
+        </div>`;
+      }
+    });
+
+    if (items.length > previewLimit){
+      html += `<div class="fp-more">... and ${items.length - previewLimit} more lines</div>`;
+    }
+
+    listEl.innerHTML = html;
+    $('#file-preview').classList.add('show');
+
+    if (totalCount > REMAINING){
+      $('#lw-file').textContent = totalCount;
+      $('#lw-limit').textContent = REMAINING;
+      $('#limit-warn').classList.add('show');
+      $('#bulk-submit').style.display = 'none';
+    } else {
+      $('#limit-warn').classList.remove('show');
+      $('#bulk-submit').style.display = 'inline-flex';
+    }
+  };
+  reader.readAsText(file);
+}
+
+async function doUpload(){
+  if (!fileInput.files.length) return toast('Choose a file first', true);
+  const btn = $('#bulk-submit') || $('#lw-upload');
+  if (btn) btn.disabled = true;
+
+  const fd = new FormData();
+  fd.append('mode', 'bulk');
+  fd.append('file', fileInput.files[0]);
+  fd.append('account_mode', $('#account_mode').value);
+
+  try {
+    const res = await fetch('/add_account', {method:'POST', body:fd, credentials:'same-origin'});
+    const data = await res.json().catch(()=>({}));
+
+    const box = $('#result');
+    if (data.ok){
+      box.className = 'result show';
+      box.innerHTML = `
+        <b>${data.added}</b> added · <b>${data.duplicates}</b> duplicates · <b>${data.invalid}</b> skipped
+      `;
+      toast(`Added ${data.added} account(s)`);
+      if (data.added > 0) setTimeout(()=>location.href='/dashboard', 1200);
+    } else {
+      box.className = 'result show err';
+      box.innerHTML = `<b>Error:</b> ${escapeHtml(data.error || 'Upload failed')}`;
+      toast(data.error || 'Upload failed', true);
+    }
+  } catch(e){
+    toast('Network error', true);
+  }
+  if (btn) btn.disabled = false;
+}
+
+$('#bulk-submit').addEventListener('click', doUpload);
+$('#lw-upload').addEventListener('click', doUpload);
+
+$('#reload-btn').addEventListener('click', (e) => {
+  const i = e.currentTarget.querySelector('i');
+  i.classList.add('spin');
+  setTimeout(()=>location.reload(), 400);
+});
+
+</script>
+
+<script src="/static/music.js"></script>
+</body>
+</html>
